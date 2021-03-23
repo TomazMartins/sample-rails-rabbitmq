@@ -1,17 +1,19 @@
 version: "3"
 services:
-  # rabbitmq:
-  #   image: rabbitmq:3-management-alpine
-  #   container_name: rabbitmq
-  #   volumes:
-  #     - ./tmp/rabbitmq/etc/:/etc/rabbitmq/
-  #     - ./tmp/rabbitmq/data/:/var/lib/rabbitmq/
-  #     - ./tmp/rabbitmq/logs/:/var/log/rabbitmq/
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - 5672:5672
-  #     - 15672:15672
+  amqp:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    volumes:
+      # - ./tmp/rabbitmq/etc/:/etc/rabbitmq/
+      - ./tmp/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./tmp/rabbitmq/logs/:/var/log/rabbitmq/
+    env_file:
+      - .env
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - rabbitmq_network
   db:
     image: postgres
     volumes:
@@ -31,3 +33,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+networks:
+  rabbitmq_network:
+    driver: bridge
