@@ -4,7 +4,6 @@ services:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
     volumes:
-      # - ./tmp/rabbitmq/etc/:/etc/rabbitmq/
       - ./tmp/rabbitmq/data/:/var/lib/rabbitmq/
       - ./tmp/rabbitmq/logs/:/var/log/rabbitmq/
     env_file:
@@ -19,7 +18,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: password
+      - POSTGRES_HOST_AUTH_METHOD=trust
   web:
     stdin_open: true
     tty: true
@@ -32,6 +31,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
+      - amqp
       - db
 
 networks:
