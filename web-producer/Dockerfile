@@ -3,14 +3,15 @@ ENV BUNDLER_VERSION='2.1.4'
 RUN gem install bundler --no-document -v '2.1.4'
 
 RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client
-RUN mkdir /app
+RUN mkdir /web
 
-WORKDIR /app
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+WORKDIR /web
+COPY Gemfile /web/Gemfile
+COPY Gemfile.lock /web/Gemfile.lock
+# ONBUILD ADD . /web
 
 RUN bundle install
-COPY . /app
+COPY . /web
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
