@@ -16,6 +16,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jsonapi-serializer'
 gem 'httparty'
+
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'sneakers'
 gem 'bunny'
 
 

@@ -28,7 +28,7 @@ services:
       - .env
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/producer/app
+      - ./producer:/producer
     ports:
       - "3000:3000"
     depends_on:
@@ -46,7 +46,7 @@ services:
       - .env
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/consumer/app
+      - ./consumer:/consumer
     ports:
       - "3001:3000"
     depends_on:
