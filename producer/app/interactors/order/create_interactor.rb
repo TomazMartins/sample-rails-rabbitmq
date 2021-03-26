@@ -1,12 +1,5 @@
 class Order::CreateInteractor
-  include PublisherRabbitMQ
-
-
-  def initialize
-    set_exchange(:orders)
-  end
-
-  def execute(identifier:, total:, status:)
+  def execute!(identifier:, total:, status:)
     @order = Order.create! do |order|
       order.assign_attributes(
         identifier: identifier,
@@ -17,6 +10,9 @@ class Order::CreateInteractor
 
     return @order
   ensure
-    publish(Api::V1::OrderSerializer.new(@order).to_json) if @order.present?
+    if @order.present?
+      serialized_order = Api::V1::OrderSerializer.new(@order).to_json
+      Rabbitmq::Publishers::Order.publish(serialized_order)
+    end
   end
 end
