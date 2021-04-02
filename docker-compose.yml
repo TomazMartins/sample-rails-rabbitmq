@@ -19,42 +19,6 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
-  producer:
-    stdin_open: true
-    tty: true
-    build:
-      context: ./producer
-      dockerfile: Dockerfile
-    env_file:
-      - .env
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - ./producer:/producer
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-      - amqp
-    links:
-      - amqp
-  consumer:
-    stdin_open: true
-    tty: true
-    build:
-      context: ./consumer
-      dockerfile: Dockerfile
-    env_file:
-      - .env
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - ./consumer:/consumer
-    ports:
-      - "3001:3000"
-    depends_on:
-      - db
-      - amqp
-    links:
-      - amqp
   usms:
     stdin_open: true
     tty: true
@@ -66,6 +30,24 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./users-ms:/app
+    ports:
+      - "3002:3000"
+    depends_on:
+      - db
+      - amqp
+    links:
+      - amqp
+  ntms:
+    stdin_open: true
+    tty: true
+    build:
+      context: ./notifications-ms
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./notifications-ms:/app
     ports:
       - "3002:3000"
     depends_on:

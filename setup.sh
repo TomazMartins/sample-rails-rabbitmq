@@ -11,3 +11,4 @@ docker-compose build
 # docker-compose run producer bundle exec rake db:create
 
 docker-compose run usms bundle exec rake db:create
+docker-compose run ntms bundle exec rake db:create
