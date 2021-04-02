@@ -4,6 +4,7 @@ services:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
     volumes:
+      - ./rabbitmq/rabbit.definitions.json:/etc/rabbitmq/definitions.json
       - ./tmp/rabbitmq/data/:/var/lib/rabbitmq/
       - ./tmp/rabbitmq/logs/:/var/log/rabbitmq/
     environment:
