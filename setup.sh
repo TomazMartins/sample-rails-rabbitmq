@@ -7,5 +7,7 @@ fi
 
 docker-compose build
 
-docker-compose run consumer bundle exec rake db:create 
-docker-compose run producer bundle exec rake db:setup
+# docker-compose run consumer bundle exec rake db:create 
+# docker-compose run producer bundle exec rake db:create
+
+docker-compose run usms bundle exec rake db:create
