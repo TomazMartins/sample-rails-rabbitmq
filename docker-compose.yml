@@ -19,6 +19,24 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+  api:
+    stdin_open: true
+    tty: true
+    build:
+      context: ./bookstore-api
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./bookstore-api:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - amqp
+    links:
+      - amqp
   usms:
     stdin_open: true
     tty: true
@@ -31,7 +49,7 @@ services:
     volumes:
       - ./users-ms:/app
     ports:
-      - "3002:3000"
+      - "3001:3000"
     depends_on:
       - db
       - amqp
@@ -50,6 +68,24 @@ services:
       - ./notifications-ms:/app
     ports:
       - "3002:3000"
+    depends_on:
+      - db
+      - amqp
+    links:
+      - amqp
+  oms:
+    stdin_open: true
+    tty: true
+    build:
+      context: ./orders-ms
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./orders-ms:/app
+    ports:
+      - "3003:3000"
     depends_on:
       - db
       - amqp
