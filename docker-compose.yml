@@ -15,6 +15,7 @@ services:
       - 15672:15672
   db:
     image: postgres
+    container_name: 'postgres'
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
@@ -22,6 +23,7 @@ services:
   api:
     stdin_open: true
     tty: true
+    container_name: 'api'
     build:
       context: ./bookstore-api
       dockerfile: Dockerfile
@@ -40,6 +42,7 @@ services:
   usms:
     stdin_open: true
     tty: true
+    container_name: 'usms'
     build:
       context: ./users-ms
       dockerfile: Dockerfile
@@ -58,6 +61,7 @@ services:
   ntms:
     stdin_open: true
     tty: true
+    container_name: 'ntms'
     build:
       context: ./notifications-ms
       dockerfile: Dockerfile
@@ -76,6 +80,7 @@ services:
   oms:
     stdin_open: true
     tty: true
+    container_name: 'oms'
     build:
       context: ./orders-ms
       dockerfile: Dockerfile
