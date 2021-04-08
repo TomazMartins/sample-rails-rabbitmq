@@ -15,7 +15,7 @@ sudo chmod 777 ./setup.sh
 docker-compose up -d
 ```
 
-## For consumer
+## Consumer
 ```sh
 # In another terminal
 #
@@ -23,7 +23,7 @@ docker-compose up -d
 docker-compose run ntms bundle exec rake sneakers:run
 ```
 
-## For Producer
+## Producer
 ```sh
 # It's execute a rake taks that create
 # five Orders. This action will trigger a
@@ -35,7 +35,7 @@ docker-compose run ntms bundle exec rake sneakers:run
 # oms: it's a reference of the order-ms
 docker-compose run oms bundle exec rake order:create[5]
 ```
-## For see dasboard of RabbitMQ
+## To see dasboard of RabbitMQ
 Access the [http://localhost:15672](http://localhost:15672)
 
 ```
