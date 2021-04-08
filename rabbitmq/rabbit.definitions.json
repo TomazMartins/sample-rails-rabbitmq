@@ -46,7 +46,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ums.dead.monkeys",
+        "x-dead-letter-routing-key": "usms.author.events"
       }
     },
     {
@@ -55,7 +57,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ums.dead.monkeys",
+        "x-dead-letter-routing-key": "usms.author.behaviours"
       }
     },
     {
@@ -64,7 +68,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ums.dead.monkeys",
+        "x-dead-letter-routing-key": "usms.book.events"
       }
     },
     {
@@ -73,7 +79,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ums.dead.monkeys",
+        "x-dead-letter-routing-key": "usms.book.behaviours"
       }
     },
     {
@@ -82,7 +90,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ums.dead.monkeys",
+        "x-dead-letter-routing-key": "usms.order.events"
       }
     },
     {
@@ -91,7 +101,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ums.dead.monkeys",
+        "x-dead-letter-routing-key": "usms.order.behaviours"
       }
     },
     {
@@ -100,7 +112,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "oms.dead.monkeys",
+        "x-dead-letter-routing-key": "oms.payment.events"
       }
     },
     {
@@ -109,7 +123,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "oms.dead.monkeys",
+        "x-dead-letter-routing-key": "oms.payment.behaviours"
       }
     },
     {
@@ -118,7 +134,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "pms.dead.monkeys",
+        "x-dead-letter-routing-key": "pms.command.create-bank-slip"
       }
     },
     {
@@ -127,7 +145,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ntms.dead.monkeys",
+        "x-dead-letter-routing-key": "ntms.user.events"
       }
     },
     {
@@ -136,7 +156,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ntms.dead.monkeys",
+        "x-dead-letter-routing-key": "ntms.user.behaviours"
       }
     },
     {
@@ -145,7 +167,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ntms.dead.monkeys",
+        "x-dead-letter-routing-key": "ntms.command.send-order-behaviour-email"
       }
     },
     {
@@ -154,7 +178,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ntms.dead.monkeys",
+        "x-dead-letter-routing-key": "ntms.command.send-author-behaviour-email"
       }
     },
     {
@@ -163,7 +189,9 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {
-        "x-queue-type": "quorum"
+        "x-queue-type": "quorum",
+        "x-dead-letter-exchange": "ntms.dead.monkeys",
+        "x-dead-letter-routing-key": "ntms.command.send-book-behaviour-email"
       }
     }
   ],
