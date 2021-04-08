@@ -2,7 +2,13 @@ class Rabbitmq::Subscriber::UserEvent
   include Sneakers::Worker
 
   from_queue "ntms.user.events", exchange: 'users', routing_key: 'user.events.*',
-    arguments: { 'x-queue-type' => 'quorum' },
+    handler: SneakersHandlers::ExponentialBackoffHandler,
+    max_retries: 5,
+    arguments: {
+      'x-dead-letter-routing-key' => 'ntms.user.events',
+      'x-dead-letter-exchange' => 'ntms.dead.monkeys',
+      'x-queue-type' => 'quorum'
+    },
     exchange_options: {
       type: :topic,
       durable: true
