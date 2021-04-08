@@ -5,11 +5,40 @@
 docker-compose build
 ```
 ```sh
-docker-compose run web bundle exec rake db:setup
+# This script execute the action to populate
+# the databases (with db:setup/db:create rake tasks)
+# and execute webpacker:install
+sudo chmod 777 ./setup.sh
+./setup.sh
 ```
 ```sh
 docker-compose up -d
 ```
+
+## For consumer
 ```sh
-dcr web bundle exec rake order:create[O-001-00000001,100.0,paid]
+# In another terminal
+#
+# ntms: it's a reference of the notification-ms
+docker-compose run ntms bundle exec rake sneakers:run
+```
+
+## For Producer
+```sh
+# It's execute a rake taks that create
+# five Orders. This action will trigger a
+# event, that will be listened by notification-ms
+#
+# There are others rake tasks about Order entity.
+# Take a look!
+#
+# oms: it's a reference of the order-ms
+docker-compose run oms bundle exec rake order:create[5]
+```
+## For see dasboard of RabbitMQ
+Access the [http://localhost:15672](http://localhost:15672)
+
+```
+user: guest
+password: guest
 ```
